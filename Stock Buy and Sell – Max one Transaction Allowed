@@ -1,0 +1,20 @@
+Stock Buy and Sell – Max one Transaction Allowed
+
+
+
+// User function Template for Java
+
+class Solution {
+    public int maximumProfit(int prices[]) {
+        // Code here
+        int profit = 0;
+        int curr_min = prices[0];
+        
+        for(int price : prices){
+            curr_min = Math.min(curr_min, price);
+            profit = Math.max(profit, Math.abs(curr_min - price));
+        }
+        
+        return profit;
+    }
+}
