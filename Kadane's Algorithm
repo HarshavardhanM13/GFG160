@@ -1,0 +1,22 @@
+Kadane's Algorithm
+
+
+
+class Solution {
+    int maxSubarraySum(int[] arr) {
+        
+        int maxsum = arr[0];
+        int currsum = 0;
+        
+        for(int num : arr){
+            currsum += num;
+            maxsum = Math.max(currsum,maxsum);
+            if(currsum < 0){
+                currsum = 0;
+            }
+        }
+        //maxsum = Math.max(currsum,maxsum);
+        return maxsum;
+        
+    }
+}
