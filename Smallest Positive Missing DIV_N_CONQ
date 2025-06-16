@@ -1,0 +1,46 @@
+
+Smallest Positive Missing DIV_N_CONQ
+
+
+
+
+
+class Solution {
+    // Function to find the smallest positive number missing from the array.
+    
+    int min_miss = Integer.MAX_VALUE;
+    Set<Integer> set = new HashSet<>();
+    
+    public int missingNumber(int[] arr) {
+        
+        
+        int left = 1;
+        int right = 0;
+        
+        for(int num:arr){
+            right = Math.max(right,num);
+            set.add(num);
+        }
+        
+        div_n_conq(left,right,arr);    
+        if(min_miss == Integer.MAX_VALUE){
+            min_miss = right + 1;
+        }
+        return min_miss;
+    }
+    
+    void div_n_conq(int left,int right, int[]arr){
+        if(left <= right){
+            int mid = (left + right) / 2;
+            if(set.contains(mid)){
+                div_n_conq(left,mid-1,arr);
+                div_n_conq(mid+1,right,arr);
+            }
+            else{
+                min_miss = Math.min(min_miss,mid);
+                div_n_conq(left,mid-1,arr);
+                div_n_conq(mid+1,right,arr);
+            }
+        }
+    }
+}
